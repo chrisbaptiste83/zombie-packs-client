@@ -1,25 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'; 
+import './App.scss'; 
+import TacticalPackageShow from './containers/TacticalPackageShow'; 
+import Landing from './components/Landing'; 
+import Navigation from './components/Navigation'; 
+import TacticalPackagesContainer from './containers/TacticalPackagesContainer'; 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  return ( 
+    <Router> 
+      <Navigation/><br></br>
+          <Switch> 
+            <Route exact path="/" component={Landing}/>
+            <Route exact path="/tactical_packages" component={TacticalPackagesContainer}/>   
+            <Route exact path="/tactical_packages/:id" component={TacticalPackageShow}/>  
+          </Switch> 
+    </Router>
   );
 }
 
