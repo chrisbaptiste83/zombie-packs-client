@@ -1,20 +1,20 @@
 import { combineReducers } from 'redux'
 import { 
   RECEIVE_TACTICALPACKS,
-  FETCHING_PRIMARYWEAPONS,
-  RECEIVE_PRIMARYWEAPONS,
-  FETCHING_TACTICALPACKS, 
-  RECEIVE_LETHALWEAPONS,
-  FETCHING_LETHALWEAPONS,
-  RECEIVE_SECONDARYWEAPONS,
-  FETCHING_SECONDARYWEAPONS, 
-  RECEIVE_TACTICALITEMS,
-  FETCHING_TACTICALITEMS,
   ADD_TACTICALPACK, 
-  ADD_PRIMARYWEAPON, 
-  ADD_SECONDARYWEAPON, 
-  ADD_LETHALWEAPON, 
-  ADD_TACTICALITEM
+  FETCHING_TACTICALPACKS,
+  SIGNUP,
+  LOGGED_IN,
+  LOGIN,
+  FAILED_SIGNUP,
+  FAILED_LOGIN,
+  LOGGED_OUT,
+  LOGOUT,
+  EDIT_PROFILE,
+  FETCH_PROFILE,
+  FETCH_USERS,
+  UPLOAD_PHOTO,
+  DELETE_USER
 } from '../actions';
 
 const tacticalPackages = (state = {
@@ -56,148 +56,123 @@ const tacticalPackages = (state = {
   } 
 }
 
-const primaryWeapons = (state = {
-  items: [],
-  itemsById: {},
-  loading: false 
-}, action) => {
-  switch(action.type) {
-    case FETCHING_PRIMARYWEAPONS:
+const usersReducer = (
+  state = {
+    status: false,
+    user: {},
+    profile: {},
+    users: [],
+    emailError: "",
+    usernameError: "",
+    passwordError: "",
+    passwordConfirmationError: "",
+  },
+  action
+) => {
+  const {
+    payload,
+    emailError,
+    passwordError,
+    passwordConfirmationError,
+    usernameError,
+    user,
+    users,
+    type,
+  } = action;
+  switch (type) {
+    case SIGNUP:
       return {
         ...state,
-        loading: true
-      }
-    case RECEIVE_PRIMARYWEAPONS:
-      return {
-        items: action.payload.map(primaryWeapon => primaryWeapon.id),
-        itemsById: action.payload.reduce((idMap, primaryWeapon) => {
-          idMap[primaryWeapon.id] = primaryWeapon;
-          return idMap;
-        },{}),
-        loading: false
-      } 
-      case ADD_PRIMARYWEAPON: 
+        status: true,
+        user: payload,
+      };
+
+    case FAILED_SIGNUP:
       return {
         ...state,
-        items: state.items.concat(action.payload.id),
-        itemsById: {
-          ...state.itemsById,
-          [action.payload.id]: action.payload
-        }
-      }  
-    default:
+        emailError: emailError[0],
+        usernameError: usernameError,
+        passwordError: passwordError,
+        passwordConfirmationError: passwordConfirmationError,
+      };
+      
+      case LOGIN:
+        return {
+          ...state,
+          status: true,
+          user: user,
+        };
+  
+      case LOGGED_IN:
+        return {
+          ...state,
+          status: true,
+          user: user,
+        };
+    
+    case FAILED_LOGIN:
+      return {
+        ...state,
+        emailError: emailError,
+        passwordError: passwordError,
+      };
+
+    case FETCH_USERS:
+      return {
+        ...state,
+        users: users,
+      };
+
+    case EDIT_PROFILE:
+      return {
+        ...state,
+        user: payload,
+      };
+
+    case UPLOAD_PHOTO:
+      return {
+        ...state,
+        status: true,
+        user: payload,
+      };
+
+    case FETCH_PROFILE:
+      return {
+        ...state,
+        profile: payload,
+      };
+
+    case LOGGED_OUT:
+      return {
+        ...state,
+        status: false,
+        user: {},
+      };
+
+    case LOGOUT:
+      return {
+        status: false,
+        user: {},
+      };
+
+    case DELETE_USER:
+      return {
+        ...state,
+        status: false,
+        user: {},
+      };
+
+    default: {
       return state;
-  }
-} 
-
-const tacticalItems = (state = {
-    items: [],
-    itemsById: {},
-    loading: false 
-  }, action) => {
-    switch(action.type) {
-      case FETCHING_TACTICALITEMS:
-        return {
-          ...state,
-          loading: true
-        }
-      case RECEIVE_TACTICALITEMS:
-        return {
-          items: action.payload.map(tacticalItem => tacticalItem.id),
-          itemsById: action.payload.reduce((idMap, tacticalItem) => {
-            idMap[tacticalItem.id] = tacticalItem;
-            return idMap;
-          },{}),
-          loading: false
-        } 
-        case ADD_TACTICALITEM: 
-        return {
-          ...state,
-          items: state.items.concat(action.payload.id),
-          itemsById: {
-            ...state.itemsById,
-            [action.payload.id]: action.payload
-          }
-        }     
-      default:
-        return state;
-    }
-  } 
-
-  const lethalWeapons = (state = {
-    items: [],
-    itemsById: {},
-    loading: false 
-  }, action) => {
-    switch(action.type) {
-      case FETCHING_LETHALWEAPONS:
-        return {
-          ...state,
-          loading: true
-        }
-      case RECEIVE_LETHALWEAPONS:
-        return {
-          items: action.payload.map(lethalWeapon => lethalWeapon.id),
-          itemsById: action.payload.reduce((idMap, lethalWeapon) => {
-            idMap[lethalWeapon.id] = lethalWeapon;
-            return idMap;
-          },{}),
-          loading: false
-        } 
-        case ADD_LETHALWEAPON: 
-        return {
-          ...state,
-          items: state.items.concat(action.payload.id),
-          itemsById: {
-            ...state.itemsById,
-            [action.payload.id]: action.payload
-          }
-        }    
-      default:
-        return state;
-    }
-  } 
-
-  const secondaryWeapons = (state = {
-    items: [],
-    itemsById: {},
-    loading: false 
-  }, action) => {
-    switch(action.type) {
-      case FETCHING_SECONDARYWEAPONS:
-        return {
-          ...state,
-          loading: true
-        }
-      case RECEIVE_SECONDARYWEAPONS:
-        return {
-          items: action.payload.map(secondaryWeapon => secondaryWeapon.id),
-          itemsById: action.payload.reduce((idMap, secondaryWeapon) => {
-            idMap[secondaryWeapon.id] = secondaryWeapon;
-            return idMap;
-          },{}),
-          loading: false
-      } 
-      case ADD_SECONDARYWEAPON: 
-      return {
-        ...state,
-        items: state.items.concat(action.payload.id),
-        itemsById: {
-          ...state.itemsById,
-          [action.payload.id]: action.payload
-        }
-      }  
-      default:
-        return state;
     }
   }
+};
+
+
 
 const rootReducer = combineReducers({
   tacticalPackages,
-  primaryWeapons, 
-  secondaryWeapons,
-  lethalWeapons, 
-  tacticalItems
+  usersReducer
 }) 
 
 export default rootReducer; 
