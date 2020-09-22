@@ -51,6 +51,20 @@ export const addTacticalPackage = tacticalPackage => {
   }
 } 
 
+export const fetchTacticalPackagebyId = (id) => {
+  return dispatch => {
+    dispatch({ type: FETCHING_TACTICALPACKS }) 
+    return fetch(`http://localhost:3001/tactical_packages/${id}`)
+      .then(res => res.json()) 
+      .then(tacticalPackage => {
+        dispatch({
+          type: RECEIVE_TACTICALPACKS, 
+          payload: [tacticalPackage]
+        })
+      })  
+  } 
+}
+
 export const deleteTacticalPackage = (tacticalPackageId) => { 
   return dispatch => {
     return fetch(`http://localhost:3001/tactical_packages/${tacticalPackageId}`, {
