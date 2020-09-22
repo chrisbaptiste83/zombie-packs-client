@@ -1,5 +1,6 @@
 import React from 'react'; 
-import './App.scss'; 
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import TacticalPackageShow from './containers/TacticalPackageShow'; 
 import Landing from './components/Landing'; 
 import Navigation from './components/Navigation'; 
