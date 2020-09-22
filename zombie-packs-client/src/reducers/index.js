@@ -198,4 +198,6 @@ const rootReducer = combineReducers({
   secondaryWeapons,
   lethalWeapons, 
   tacticalItems
-})
+}) 
+
+export default rootReducer; 
