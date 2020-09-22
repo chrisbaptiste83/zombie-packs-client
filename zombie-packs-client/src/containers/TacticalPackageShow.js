@@ -1,5 +1,5 @@
 import React, { Component } from 'react';  
-import TacticalPackage from '../components/TacticalPackage'; 
+// import TacticalPackage from '../components/TacticalPackage'; 
 import {fetchTacticalPackagebyId} from '../actions/index.js'; 
 import { connect } from 'react-redux';
 
@@ -22,7 +22,7 @@ class TacticalPackageShow extends Component {
     else {
       return ( 
         <React.Fragment>  
-          <TacticalPackage tacticalPackage={this.props.tacticalPackage}/>      
+          {/* <TacticalPackage tacticalPackage={this.props.tacticalPackage}/>       */}
         </React.Fragment>
       ) 
     }  
