@@ -1,19 +1,22 @@
 export const FETCHING_TACTICALPACKS = "FETCHING_TACTICALPACKS"
 export const RECEIVE_TACTICALPACKS = "RECEIVE_TACTICALPACKS"
-export const FETCHING_PRIMARYWEAPONS = "FETCHING_PRIMARYWEAPONS"
-export const RECEIVE_PRIMARYWEAPONS = "RECEIVE_PRIMARYWEAPONS" 
-export const FETCHING_SECONDARYWEAPONS = "FETCHING_SECONDARYWEAPONS"
-export const RECEIVE_SECONDARYWEAPONS = "RECEIVE_SECONDARYWEAPONS" 
-export const FETCHING_LETHALWEAPONS = "FETCHING_LETHALWEAPONS" 
-export const RECEIVE_LETHALWEAPONS = "RECEIVE_LETHALWEAPONS" 
-export const FETCHING_TACTICALITEMS = "FETCHING_TACTICALITEMS" 
-export const RECEIVE_TACTICALITEMS = "RECEIVE_TACTICALITEMS" 
 export const ADD_TACTICALPACK = "ADD_TACTICALPACK" 
-export const ADD_PRIMARYWEAPON = "ADD_PRIMARYWEAPON" 
-export const ADD_SECONDARYWEAPON = "ADD_SECONDARYWEAPON" 
-export const ADD_LETHALWEAPON = "ADD_LETHALWEAPON" 
-export const ADD_TACTICALITEM = "TACTICALITEM" 
 export const DELETE_TACTICALPACK = "DELETE_TACTICALPACK" 
+
+export const FAILED_SIGNUP = "FAILED_SIGNUP"
+export const FAILED_LOGIN = "FAILED_LOGIN"
+export const LOGGED_IN = "LOGGED_IN"
+export const LOGGED_OUT = "LOGGED_OUT"
+export const SIGNUP = "SIGNUP"
+export const LOGOUT = "LOGOUT"
+export const LOGIN = "LOGIN"
+
+export const FETCH_USERS = "FETCH_USERS"
+
+export const EDIT_PROFILE = "EDIT_PROFILE"
+export const FETCH_PROFILE = "FETCH_PROFILE"
+export const UPLOAD_PHOTO = "UPLOAD_PHOTO"
+export const DELETE_USER = "DELETE_USER"
 
 export const fetchTacticalPackages = () => {
   return dispatch => {
@@ -50,6 +53,66 @@ export const addTacticalPackage = tacticalPackage => {
       })
   }
 } 
+
+export const sessionStatus = () => {
+  return (dispatch) => {
+    return fetch('http://localhost:3001/session/status', {
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+      credentials: "include",
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        data.logged_in === true
+          ? dispatch({
+              type: LOGGED_IN,
+              user: data.user.data.attributes,
+              interests: data.interests,
+            })
+          : dispatch({ type: LOGGED_OUT, payload: data });
+      });
+  };
+};
+
+export const signupUser = (formData, ownProps) => {
+  return (dispatch) => {
+    return fetch('http://localhost:3001/users', {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        "Accept": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(formData),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        data.status === 200
+          ? dispatch(
+              {
+                type: SIGNUP,
+                payload: data.user.data.attributes,
+              },
+              ownProps.history.push(
+                `/`
+              )
+            )
+          : dispatch(
+              {
+                type: FAILED_SIGNUP,
+                usernameError: data.username_error,
+                emailError: data.email_error,
+                passwordError: data.passwordError,
+                passwordConfirmationError: data.password_confirmation_error,
+              },
+              ownProps.history.push("/signup")
+            );
+      });
+  };
+};
 
 export const fetchTacticalPackagebyId = (id) => {
   return dispatch => {
