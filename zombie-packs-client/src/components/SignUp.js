@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { signupUser } from "../actions/index";
+import { signupUser, ADD_TACTICALPACK } from "../actions/index";
 import { withRouter } from "react-router-dom";
-import { Form, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col, Button, Jumbotron} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 class SignUp extends Component {
@@ -39,91 +39,69 @@ class SignUp extends Component {
     } = this.state;
 
     return (
-      <div
-        className="form"
-        style={{
-          display: "block",
-          width: "500px",
-          float: "center",
-          backgroundColor: "black",
-        }}
-      >
-        <h4
-          style={{
-            textAlign: "center",
-            fontStyle: "bold",
-            width: "100%",
-            padding: "0%",
-          }}
-        >
-          Create Account!
-        </h4>
-        <ul>
-          <Form onSubmit={this.handleSubmit} className="signup">
-            <Form.Group>
-              <Form.Control
-                type="text"
-                placeholder="username required!"
-                name="username"
-                value={username}
-                onChange={this.handleChange}
-              />
-              <div style={{ color: "red" }}>{this.props.usernameError}</div>
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Control
-                placeholder="email required!"
-                type="text"
-                name="email"
-                value={email}
-                onChange={this.handleChange}
-              />
-              <div style={{ color: "red" }}>{this.props.emailError}</div>
-            </Form.Group>
-
-
-           
-
-            <Row>
-              <Col>
+      <center>
+          <Jumbotron style={{ background: 'rgba(0,0,0, 0.65)', width: '80rem', color:'white'}}>
+            <h3>Create Account!</h3><br></br>
+            <Form onSubmit={this.handleSubmit} className="signup">
+              <Form.Group>
                 <Form.Control
-                  placeholder="password required!"
-                  type="password"
-                  name="password"
-                  autoComplete={password}
-                  value={password}
+                  type="text"
+                  placeholder="username required!"
+                  name="username"
+                  value={username}
                   onChange={this.handleChange}
                 />
-                <div style={{ color: "red" }}>{this.props.passwordError}</div>
-              </Col>
+                <div style={{ color: "red" }}>{this.props.usernameError}</div>
+              </Form.Group>
 
-              <Col>
+              <Form.Group>
                 <Form.Control
-                  placeholder="Confirm Password!"
-                  type="password"
-                  name="password_confirmation"
-                  autoComplete={password_confirmation}
-                  value={password_confirmation}
+                  placeholder="email required!"
+                  type="text"
+                  name="email"
+                  value={email}
                   onChange={this.handleChange}
                 />
-                <div style={{ color: "red" }}>
-                  {this.props.passwordConfirmationError}
-                </div>
-              </Col>
-            </Row>
-            <div />
-            <br />
-            <Button variant="success" type="submit">
-              Signup
-            </Button>
-          </Form>
-          <span className="bottom_link" style={{ color: "antiquewhite" }}>
-            Have an account!
-            <Link to="/login">Login</Link>
-          </span>
-        </ul>
-      </div>
+                <div style={{ color: "red" }}>{this.props.emailError}</div>
+              </Form.Group>
+
+              <Row>
+                <Col>
+                  <Form.Control
+                    placeholder="Password Required!"
+                    type="password"
+                    name="password"
+                    autoComplete={password}
+                    value={password}
+                    onChange={this.handleChange}
+                  />
+                  <div style={{ color: "red" }}>{this.props.passwordError}</div>
+                </Col>
+
+                <Col>
+                  <Form.Control
+                    placeholder="Confirm Password!"
+                    type="password"
+                    name="password_confirmation"
+                    autoComplete={password_confirmation}
+                    value={password_confirmation}
+                    onChange={this.handleChange}
+                  />
+                  <div style={{ color: "red" }}>
+                    {this.props.passwordConfirmationError}
+                  </div>
+                </Col>
+              </Row>
+              <div />
+              <br />
+              <Button variant="success" type="submit">
+                Signup
+              </Button>
+            </Form><br></br>
+            <h4>Already have an account?</h4><br></br>
+              <Button to="/login">Login</Button>
+      </Jumbotron> 
+      </center>
     );
   }
 }
