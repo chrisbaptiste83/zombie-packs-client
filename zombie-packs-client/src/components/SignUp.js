@@ -46,7 +46,7 @@ class SignUp extends Component {
               <Form.Group>
                 <Form.Control
                   type="text"
-                  placeholder="username required!"
+                  placeholder="Username Required!"
                   name="username"
                   value={username}
                   onChange={this.handleChange}
@@ -56,7 +56,7 @@ class SignUp extends Component {
 
               <Form.Group>
                 <Form.Control
-                  placeholder="email required!"
+                  placeholder="Email Required!"
                   type="text"
                   name="email"
                   value={email}
