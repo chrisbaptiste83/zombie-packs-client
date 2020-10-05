@@ -2,7 +2,16 @@ import React from 'react';
 import { Navbar, Nav} from 'react-bootstrap'; 
 import { Link } from 'react-router-dom'; 
 
-const Navigation = () => {
+const Navigation = (props) => { 
+  const handleClick = () => {
+    const { logoutUser, status, user } = props;
+    if (status) {
+      logoutUser(user.id).then(() => {
+        props.history.push("/login");
+      });
+    }
+  };
+
   return (
     <div>
       <Navbar  variant="dark" fixed="top" style={{ height: '6rem', background:'rgba(0,0,0, 0.60)'}}> 
