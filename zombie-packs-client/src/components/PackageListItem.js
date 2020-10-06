@@ -4,9 +4,8 @@ import {Card, Button} from 'react-bootstrap';
 
 
 class PackageListItem extends Component { 
-
   render() {   
-    const {id, title, description, creator} = this.props;
+    const {id, title, description, creator} = this.props; 
     return (
       <React.Fragment> 
           <Card style={{ background: 'rgba(0,0,0, 0.85)',color:'white', width: '65rem' }}>  
