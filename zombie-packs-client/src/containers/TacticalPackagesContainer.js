@@ -43,7 +43,7 @@ class TacticalPackagesContainer extends Component {
 
 const mapStateToProps = ({tacticalPackages}) => { 
   return { 
-      tacticalPackages: tacticalPackages.items.map(tacticalPackageId => tacticalPackages.itemsById[tacticalPackageId]),
+      tacticalPackages: tacticalPackages.items,
       loading: tacticalPackages.loading 
   }
 } 

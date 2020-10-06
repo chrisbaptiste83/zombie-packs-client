@@ -19,23 +19,19 @@ import {
 
 const tacticalPackages = (state = {
   items: [], 
-  itemsById: {},
   loading: false 
-}, action) => {
-  switch(action.type) {
+}, action) => { 
+  const { payload, items, type } = action; 
+
+  switch(type) {
     case FETCHING_TACTICALPACKS:
       return {
         ...state,
         loading: true
       }
-    case RECEIVE_TACTICALPACKS:
-      return {
-        items: action.payload.map(tacticalPack => tacticalPack.id).reverse(),
-        itemsById: action.payload.reduce((idMap, tacticalPack) => {
-          idMap[tacticalPack.id] = tacticalPack; 
-          return idMap; 
-        },{}), 
-        loading: false 
+    case RECEIVE_TACTICALPACKS: 
+      return { 
+        items: payload
       } 
     case ADD_TACTICALPACK: 
       return {

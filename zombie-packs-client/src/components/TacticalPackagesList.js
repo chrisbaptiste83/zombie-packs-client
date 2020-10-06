@@ -1,7 +1,7 @@
 import React, { Component } from 'react';  
 import TacticalPackageListItem from './TacticalPackageListItem'; 
 import {Jumbotron} from 'react-bootstrap'; 
-import PackageListItem from './PackageListItem';
+
 
 class TacticalPackagesList extends Component { 
 
@@ -15,10 +15,8 @@ class TacticalPackagesList extends Component {
   }
 
   tacticalPackagesList = tacPackages => 
-  tacPackages.map(packageAttributes => 
-    packageAttributes.primary_weapon&&packageAttributes.secondary_weapon&&packageAttributes.lethal_weapon&&packageAttributes.tactical_item?
-    <TacticalPackageListItem {...packageAttributes}/>:<PackageListItem {...packageAttributes}/>) 
-
+  tacPackages.map(packageAttributes =><TacticalPackageListItem {...packageAttributes}/>) 
+  debugger
 
   filterTacticalPackages = () => {
     let keyword = this.state.searchWord.toLowerCase(); 
@@ -66,7 +64,7 @@ class TacticalPackagesList extends Component {
             onClick={this.filterTacticalPackages.bind(this)}
           /><br></br><br></br>
           {this.state.message}
-        </Jumbotron>
+        </Jumbotron> 
         <h3>{renderTacPacks}</h3>
       </React.Fragment>
     )
