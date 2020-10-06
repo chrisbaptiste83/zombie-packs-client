@@ -26,7 +26,7 @@ export const fetchTacticalPackages = () => {
       .then(tacticalPackages => { 
         dispatch({
           type: RECEIVE_TACTICALPACKS, 
-          payload: tacticalPackages
+          payload: tacticalPackages.data
         })
       })   
   }
@@ -53,28 +53,28 @@ export const addTacticalPackage = tacticalPackage => {
       })
   }
 } 
-export const sessionStatus = () => {
-  return (dispatch) => {
-    return fetch(`${BASE_URL}/api/v1/session/status`, {
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-      },
-      credentials: "include",
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        data.logged_in === true
-          ? dispatch({
-              type: LOGGED_IN,
-              user: data.user.data.attributes,
-              interests: data.interests,
-            })
-          : dispatch({ type: LOGGED_OUT, payload: data });
-      });
-  };
-};
+// export const sessionStatus = () => {
+//   return (dispatch) => {
+//     return fetch(`${BASE_URL}/api/v1/session/status`, {
+//       mode: "cors",
+//       headers: {
+//         "Content-Type": "application/json",
+//         "Accept": "application/json",
+//       },
+//       credentials: "include",
+//     })
+//       .then((resp) => resp.json())
+//       .then((data) => {
+//         data.logged_in === true
+//           ? dispatch({
+//               type: LOGGED_IN,
+//               user: data.user.data.attributes,
+//               interests: data.interests,
+//             })
+//           : dispatch({ type: LOGGED_OUT, payload: data });
+//       });
+//   };
+// };
 
 export const sessionStatus = () => {
   return (dispatch) => {
