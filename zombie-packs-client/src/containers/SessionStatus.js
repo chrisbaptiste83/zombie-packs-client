@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { sessionStatus } from "../actions/sessionStatus";
-import Navigation from "../components/NavBar";
+import { sessionStatus } from "../actions/index";
+import Navigation from "../components/Navigation";
 
 class SessionStatus extends Component {
   componentDidMount() {
