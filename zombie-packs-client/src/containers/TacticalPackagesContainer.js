@@ -31,9 +31,7 @@ class TacticalPackagesContainer extends Component {
         <center>
           <Jumbotron style={{ background: 'rgba(0,0,0, .75)',color:'white', width: '65rem' }}> 
             <h1> Tactical Packages: </h1><br></br> 
-              <Button style={{ background: 'rgba(0,0,0, 0.5)'}}><Link to={{pathname: `/tactical_packages/new`}}>Create Tactical Pack </Link></Button><br></br><br></br>
-              <h5>Select "Add Equipment" to add weapons and equipment to newly created tactical pack.</h5> 
-          </Jumbotron>     
+          </Jumbotron>    
               {this.props.loading ? 'Loading...' : this.renderLoadedContent()} 
         </center>
       </section>
@@ -43,8 +41,7 @@ class TacticalPackagesContainer extends Component {
 
 const mapStateToProps = ({tacticalPackages}) => { 
   return { 
-      tacticalPackages: tacticalPackages.items,
-      loading: tacticalPackages.loading 
+      tacticalPackages: tacticalPackages.items
   }
 } 
 
