@@ -3,7 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import TacticalPackageShow from './containers/TacticalPackageShow'; 
 import Landing from './components/Landing'; 
-import Navigation from './components/Navigation'; 
+import SessionStatus from './containers/SessionStatus'; 
 import TacticalPackagesContainer from './containers/TacticalPackagesContainer'; 
 import SignUp from './components/SignUp';
 import LogIn from './components/LogIn';
@@ -17,7 +17,7 @@ import {
 function App() {
   return ( 
     <Router> 
-      <Navigation/><br></br>
+       <SessionStatus /><br></br>
           <Switch> 
             <Route exact path="/" component={Landing}/>
             <Route exact path="/tactical_packages" component={TacticalPackagesContainer}/>   
