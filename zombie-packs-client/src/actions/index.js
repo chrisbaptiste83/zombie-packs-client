@@ -53,68 +53,22 @@ export const addTacticalPackage = tacticalPackage => {
       })
   }
 } 
-// export const sessionStatus = () => {
-//   return (dispatch) => {
-//     return fetch(`${BASE_URL}/api/v1/session/status`, {
-//       mode: "cors",
-//       headers: {
-//         "Content-Type": "application/json",
-//         "Accept": "application/json",
-//       },
-//       credentials: "include",
-//     })
-//       .then((resp) => resp.json())
-//       .then((data) => {
-//         data.logged_in === true
-//           ? dispatch({
-//               type: LOGGED_IN,
-//               user: data.user.data.attributes,
-//               interests: data.interests,
-//             })
-//           : dispatch({ type: LOGGED_OUT, payload: data });
-//       });
-//   };
-// };
-
-export const loginUser = (formData, ownProps) => {
+export const logoutUser = (id) => {
   return (dispatch) => {
-    return fetch(`localhost:3000/login`, {
-      method: "POST",
+    return fetch(`http://localhost:3001/logout/${id}`, {
+      method: "DELETE",
       headers: {
-        "Content-type": "application/json",
+        "Content-Type": "application/json",
         "Accept": "application/json",
       },
       credentials: "include",
-      body: JSON.stringify(formData),
     })
       .then((resp) => resp.json())
-      .then((data) => {
-        data.status !== 500
-          ? 
-          dispatch(
-              {
-                type: LOGIN,
-                user: data.user.data.attributes,
-                interests: data.interests,
-              },
-              ownProps.history.push(
-                // `/my-profile/${data.user.data.attributes.id}`
-                `/users`
-              )
-            )
-          : dispatch(
-              {
-                type: FAILED_LOGIN,
-                emailError: data.email_error,
-                passwordError: data.passwordError,
-              },
-              ownProps.history.push("/login")
-            );
+      .then(({ user }) => {
+        dispatch({ type: LOGOUT, user: user });
       });
   };
-};
-
-
+}; 
 
 export const sessionStatus = () => {
   return (dispatch) => {
@@ -138,6 +92,48 @@ export const sessionStatus = () => {
       });
   };
 };
+
+export const loginUser = (formData, ownProps) => {
+  return (dispatch) => {
+    return fetch('http://localhost:3001/login', {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        "Accept": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(formData),
+    })
+      .then((resp) => resp.json())
+      .then((data) => { 
+        debugger
+        data.status !== 500
+          ? 
+          dispatch(
+              {
+                type: LOGIN,
+                user: data.user.data.attributes,
+                interests: data.interests,
+              },
+              ownProps.history.push(
+                // `/my-profile/${data.user.data.attributes.id}`
+                `/tactical_packages`
+              )
+            )
+          : dispatch(
+              {
+                type: FAILED_LOGIN,
+                emailError: data.email_error,
+                passwordError: data.passwordError,
+              },
+              ownProps.history.push("/log_in")
+            );
+      });
+  };
+};
+
+
+
 
 export const signupUser = (formData, ownProps) => {
   return (dispatch) => {
@@ -184,7 +180,7 @@ export const fetchTacticalPackagebyId = (id) => {
       .then(tacticalPackage => {
         dispatch({
           type: RECEIVE_TACTICALPACKS, 
-          payload: [tacticalPackage]
+          payload: [tacticalPackage.data]
         })
       })  
   } 
