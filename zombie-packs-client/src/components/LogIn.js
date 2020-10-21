@@ -8,8 +8,8 @@ class LogIn extends Component {
   constructor() {
     super();
     this.state = {
-      email: "test_user@exemple.com",
-      password: "111",
+      email: "chris@gmail.com",
+      password: "chris00",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
