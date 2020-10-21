@@ -10,9 +10,9 @@ class TacticalPackageShow extends Component {
     super(props); 
   } 
 
-  componentDidMount() { 
-    this.props.fetchTacticalPackagebyId(this.props.match.params.id) 
-  } 
+  // componentDidMount() { 
+  //   this.props.fetchTacticalPackagebyId(this.props.match.params.id) 
+  // } 
 
 
   render() { 
@@ -34,4 +34,4 @@ const mapStateToProps = ({tacticalPackages},{match}) => {
    tacticalPackage: tacticalPackages.items[match.params.id-1]
   } 
 }
-export default connect(mapStateToProps, { fetchTacticalPackagebyId })(TacticalPackageShow)
+export default connect(mapStateToProps, null )(TacticalPackageShow)

@@ -165,19 +165,19 @@ export const signupUser = (formData, ownProps) => {
   };
 };
 
-export const fetchTacticalPackagebyId = (id) => {
-  return dispatch => {
-    dispatch({ type: FETCHING_TACTICALPACKS }) 
-    return fetch(`http://localhost:3001/tactical_packages/${id}`)
-      .then(res => res.json()) 
-      .then(tacticalPackage => {
-        dispatch({
-          type: RECEIVE_TACTICALPACKS, 
-          payload: [tacticalPackage.data]
-        })
-      })  
-  } 
-} 
+// export const fetchTacticalPackagebyId = (id) => {
+//   return dispatch => {
+//     dispatch({ type: FETCHING_TACTICALPACKS }) 
+//     return fetch(`http://localhost:3001/tactical_packages/${id}`)
+//       .then(res => res.json()) 
+//       .then(tacticalPackage => {
+//         dispatch({
+//           type: RECEIVE_TACTICALPACKS, 
+//           payload: [tacticalPackage.data]
+//         })
+//       })  
+//   } 
+// } 
 
 // export const fetchUserbyId = (id) => {
 //   return dispatch => { 
