@@ -2,7 +2,6 @@ export const FETCHING_TACTICALPACKS = "FETCHING_TACTICALPACKS"
 export const RECEIVE_TACTICALPACKS = "RECEIVE_TACTICALPACKS"
 export const ADD_TACTICALPACK = "ADD_TACTICALPACK" 
 export const DELETE_TACTICALPACK = "DELETE_TACTICALPACK" 
-
 export const FAILED_SIGNUP = "FAILED_SIGNUP"
 export const FAILED_LOGIN = "FAILED_LOGIN"
 export const LOGGED_IN = "LOGGED_IN"
@@ -10,9 +9,6 @@ export const LOGGED_OUT = "LOGGED_OUT"
 export const SIGNUP = "SIGNUP"
 export const LOGOUT = "LOGOUT"
 export const LOGIN = "LOGIN"
-
-export const FETCH_USERS = "FETCH_USERS"
-
 export const EDIT_PROFILE = "EDIT_PROFILE"
 export const FETCH_PROFILE = "FETCH_PROFILE"
 export const UPLOAD_PHOTO = "UPLOAD_PHOTO"
@@ -106,7 +102,6 @@ export const loginUser = (formData, ownProps) => {
     })
       .then((resp) => resp.json())
       .then((data) => { 
-        debugger
         data.status !== 500
           ? 
           dispatch(
@@ -116,9 +111,7 @@ export const loginUser = (formData, ownProps) => {
                 interests: data.interests,
               },
               ownProps.history.push(
-                // `/my-profile/${data.user.data.attributes.id}`
-                `/tactical_packages`
-              )
+                "/tactical_packages"              )
             )
           : dispatch(
               {
@@ -184,7 +177,21 @@ export const fetchTacticalPackagebyId = (id) => {
         })
       })  
   } 
-}
+} 
+
+// export const fetchUserbyId = (id) => {
+//   return dispatch => { 
+//     dispatch({ type: FETCHING_USER }) 
+//     return fetch(`http://localhost:3001/users/${id}`)
+//       .then(res => res.json()) 
+//       .then(user => {
+//         dispatch({
+//           type: FETCH_USER,
+//           payload: user
+//         })
+//       })  
+//   } 
+// }
 
 export const deleteTacticalPackage = (tacticalPackageId) => { 
   return dispatch => {
