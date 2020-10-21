@@ -10,9 +10,6 @@ import {
   FAILED_LOGIN,
   LOGGED_OUT,
   LOGOUT,
-  EDIT_PROFILE,
-  FETCH_PROFILE,
-  FETCH_USERS,
   UPLOAD_PHOTO,
   DELETE_USER
 } from '../actions';
@@ -111,31 +108,13 @@ const usersReducer = (
         ...state,
         emailError: emailError,
         passwordError: passwordError,
-      };
-
-    case FETCH_USERS:
-      return {
-        ...state,
-        users: users,
-      };
-
-    case EDIT_PROFILE:
-      return {
-        ...state,
-        user: payload,
-      };
+      }; 
 
     case UPLOAD_PHOTO:
       return {
         ...state,
         status: true,
         user: payload,
-      };
-
-    case FETCH_PROFILE:
-      return {
-        ...state,
-        profile: payload,
       };
 
     case LOGGED_OUT:
