@@ -16,9 +16,7 @@ class PackageListItem extends Component {
                 <small>created by:{creator}</small>
               </Card.Text> 
               <Button style={{ background: 'black'}}><Link to={{ pathname: `/tactical_packages/${id}/add_equipment`}}> Add Equipment</Link></Button><br></br>
-            </Card.Body>
-            <center> 
-            </center>  
+            </Card.Body> 
           </Card><br></br>
       </React.Fragment>
     ) 

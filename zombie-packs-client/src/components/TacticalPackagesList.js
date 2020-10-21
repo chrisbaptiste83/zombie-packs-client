@@ -3,8 +3,8 @@ import TacticalPackageListItem from './TacticalPackageListItem';
 import {Jumbotron} from 'react-bootstrap'; 
 
 
-class TacticalPackagesList extends Component { 
-
+class TacticalPackagesList extends Component {
+  
   constructor(props) {
     super(props);
   }
@@ -17,6 +17,7 @@ class TacticalPackagesList extends Component {
     const packageList = this.tacticalPackagesList(tacticalPackages) 
     
     return (
+      
       <React.Fragment> 
         <Jumbotron style={{background: 'rgba(0,0,0, 0.75)',color:'white', width: '65rem' }}>
            <h3>{packageList}</h3>
@@ -24,6 +25,7 @@ class TacticalPackagesList extends Component {
       </React.Fragment>
     )
   } 
+  
 }
 
 export default TacticalPackagesList

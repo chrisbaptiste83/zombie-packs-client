@@ -1,8 +1,9 @@
 import React, { Component } from 'react';  
 import User from '../components/User'; 
 // import {fetchUserbyId} from '../actions/index.js'; 
+import {Jumbotron, Button} from 'react-bootstrap';
 import { connect } from 'react-redux'; 
-import TacticalPackagesList from '../components/TacticalPackagesList'
+import UserTacticalPackagesList from '../components/UserTacticalPackagesList'
 
 
 class UserShow extends Component { 
@@ -22,9 +23,13 @@ class UserShow extends Component {
     } 
     else {
       return ( 
-        <React.Fragment>
-          <User user={this.props.user}/> 
-          {/* <TacticalPackagesList tacticalPackages={this.props.tacticalPackages}/>       */}
+        <React.Fragment> 
+          <center> 
+          <Jumbotron style={{background: 'rgba(0,0,0, 0.75)',color:'white', width: '65rem' }}>
+          <User user={this.props.user}/><br></br>
+          <UserTacticalPackagesList tacticalPackages={this.props.tacticalPackages}/> 
+          </Jumbotron> 
+          </center>     
         </React.Fragment> 
       ) 
     }  
@@ -34,7 +39,7 @@ class UserShow extends Component {
 const mapStateToProps = ({usersReducer}) => { 
   return { 
     user: usersReducer.user, 
-    tacticalPackages: usersReducer.user.tacticalPackages
+    tacticalPackages: usersReducer.user.tactical_packages 
   } 
 }
 export default connect(mapStateToProps, null )(UserShow)

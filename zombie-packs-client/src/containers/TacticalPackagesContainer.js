@@ -17,15 +17,16 @@ class TacticalPackagesContainer extends Component {
     this.props.fetchTacticalPackages() 
   } 
 
-  renderLoadedContent() {
-    return (
+  renderLoadedContent() { 
+    
+    return ( 
       <React.Fragment>
         <TacticalPackagesList tacticalPackages={this.props.tacticalPackages} />    
       </React.Fragment>
-    )
+    ) 
   } 
 
-  render() {
+  render() { 
     return (
       <section>
         <center>
