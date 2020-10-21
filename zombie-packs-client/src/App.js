@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import TacticalPackageShow from './containers/TacticalPackageShow'; 
+import UserShow from './containers/UserShow';
 import Landing from './components/Landing'; 
 import SessionStatus from './containers/SessionStatus'; 
 import TacticalPackagesContainer from './containers/TacticalPackagesContainer'; 
@@ -21,7 +22,8 @@ function App() {
           <Switch> 
             <Route exact path="/" component={Landing}/>
             <Route exact path="/tactical_packages" component={TacticalPackagesContainer}/>   
-            <Route exact path="/tactical_packages/:id" component={TacticalPackageShow}/>  
+            <Route exact path="/tactical_packages/:id" component={TacticalPackageShow}/> 
+            <Route exact path="/users/:id" component={UserShow}/> 
             <Route exact path="/sign_up" component={SignUp}/>
             <Route exact path="/log_in" component={LogIn}/>  
           </Switch> 
