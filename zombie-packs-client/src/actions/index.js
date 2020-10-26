@@ -61,7 +61,7 @@ export const logoutUser = (id) => {
     })
       .then((resp) => resp.json())
       .then(({ user }) => {
-        dispatch({ type: LOGOUT, user: user });
+        dispatch({ type: LOGOUT, user: user }); 
       });
   };
 }; 

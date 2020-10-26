@@ -21,6 +21,7 @@ const Navigation = (props) => {
     <>
         <Nav.Link><Link to={{ pathname: `/users/${props.user.id}`}} style={{ color: '#FFF' }}><h2>Profile</h2></Link></Nav.Link>
         <Nav.Link><Link to={{ pathname: `/tactical_packages/`}} style={{ color: '#FFF' }}><h2>Zombie Tactical Packs</h2></Link></Nav.Link> 
+        <Nav.Link><Link to={{ pathname: `/tactical_packages/new`}} style={{ color: '#FFF' }}><h2>Create</h2></Link></Nav.Link> 
         {/* <Nav.Link><Link to={{ pathname: `/sign_up`}} style={{ color: '#FFF' }}><h2>Sign Up</h2></Link></Nav.Link>
         <Nav.Link><Link to={{ pathname: `/log_in`}} style={{ color: '#FFF' }}><h2>Log In</h2></Link></Nav.Link>       */}
         
