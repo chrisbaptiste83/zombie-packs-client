@@ -10,7 +10,16 @@ class AddTacticalPackage extends Component {
     this.state = {
     title: '', 
     description: '', 
-    creator: ''
+    creator: '', 
+    user_id: `${this.props.user.id}`, 
+    primary_weapon_name: '',
+    primary_weapon_image_url: '',
+    secondary_weapon_name: '',
+    secondary_weapon_image_url: '',
+    lethal_weapon_name: '',
+    lethal_weapon_image_url: '',
+    tactical_item_name: '',
+    tactical_item_image_url: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -22,9 +31,10 @@ class AddTacticalPackage extends Component {
 
   handleSubmit(e) {
     e.preventDefault(); 
+    debugger
     this.props.addTacticalPackage(this.state)
       .then(res => { 
-        this.props.history.push(`/tactical_packages/${res.id}/add_equipment`)
+        this.props.history.push(`/tactical_packages`)
       })  
     this.setState({ 
       submitted:true
@@ -77,6 +87,102 @@ class AddTacticalPackage extends Component {
                   value={this.state.creator}
                   onChange={this.handleChange}
                 />
+              </p><br></br> 
+              <p>
+                <label htmlFor="primary_weapon_name"><h3>Primary Weapon Name:</h3></label><br></br>
+                <input 
+                  style={{width: "725px"}}
+                  className="border"
+                  type="text" 
+                  name="primary_weapon_name"
+                  id="primary_weapon_name"
+                  value={this.state.primary_weapon_name}
+                  onChange={this.handleChange}
+                />
+              </p><br></br> 
+              <p>
+                <label htmlFor="primary_weapon_image_url"><h3>Primary Weapon Image URL:</h3></label><br></br>
+                <input 
+                  style={{width: "725px"}}
+                  className="border"
+                  type="text" 
+                  name="primary_weapon_image_url"
+                  id="primary_weapon_image_url"
+                  value={this.state.primary_weapon_image_url}
+                  onChange={this.handleChange}
+                />
+              </p><br></br> 
+              <p>
+                <label htmlFor="secondary_weapon_name"><h3>Secondary Weapon Name:</h3></label><br></br>
+                <input 
+                  style={{width: "725px"}}
+                  className="border"
+                  type="text" 
+                  name="secondary_weapon_name"
+                  id="secondary_weapon_name"
+                  value={this.state.secondary_weapon_name}
+                  onChange={this.handleChange}
+                />
+              </p><br></br> 
+              <p>
+                <label htmlFor="secondary_weapon_image_url"><h3>Secondary Weapon Image URL:</h3></label><br></br>
+                <input 
+                  style={{width: "725px"}}
+                  className="border"
+                  type="text" 
+                  name="secondary_weapon_image_url"
+                  id="secondary_weapon_image_url"
+                  value={this.state.secondary_weapon_image_url}
+                  onChange={this.handleChange}
+                />
+              </p><br></br> 
+              <p>
+                <label htmlFor="lethal_weapon_name"><h3>Lethal Weapon Name:</h3></label><br></br>
+                <input 
+                  style={{width: "725px"}}
+                  className="border"
+                  type="text" 
+                  name="lethal_weapon_name"
+                  id="lethal_weapon_name"
+                  value={this.state.lethal_weapon_name}
+                  onChange={this.handleChange}
+                />
+              </p><br></br> 
+              <p>
+                <label htmlFor="lethal_weapon_image_url"><h3>Lethal Weapon Image URL:</h3></label><br></br>
+                <input 
+                  style={{width: "725px"}}
+                  className="border"
+                  type="text" 
+                  name="lethal_weapon_image_url"
+                  id="lethal_weapon_image_url"
+                  value={this.state.lethal_weapon_image_url}
+                  onChange={this.handleChange}
+                />
+              </p><br></br> 
+              <p>
+                <label htmlFor="tactical_item_name"><h3>Tactical Item Name:</h3></label><br></br>
+                <input 
+                  style={{width: "725px"}}
+                  className="border"
+                  type="text" 
+                  name="tactical_item_name"
+                  id="tactical_item_name"
+                  value={this.state.tactical_item_name}
+                  onChange={this.handleChange}
+                />
+              </p><br></br> 
+              <p>
+                <label htmlFor="tactical_item_image_url"><h3>Tactical Item Image URL:</h3></label><br></br>
+                <input 
+                  style={{width: "725px"}}
+                  className="border"
+                  type="text" 
+                  name="tactical_item_image_url"
+                  id="tactical_item_image_url"
+                  value={this.state.tactical_item_image_url}
+                  onChange={this.handleChange}
+                />
               </p><br></br>
               <input 
                 disabled={this.state.submitted}
@@ -89,6 +195,12 @@ class AddTacticalPackage extends Component {
       </div>
     ) 
   }
-}
+} 
 
-export default connect(null, { addTacticalPackage })(AddTacticalPackage);
+const mapStateToProps = ({ usersReducer }) => {
+  return {
+    user: usersReducer.user
+  };
+};
+
+export default connect(mapStateToProps, { addTacticalPackage })(AddTacticalPackage);
