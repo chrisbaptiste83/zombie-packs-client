@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Jumbotron} from 'react-bootstrap' 
 import {addTacticalPackage } from '../actions'; 
 import { connect } from 'react-redux'; 
+import { withRouter } from 'react-router-dom';
 
 class AddTacticalPackage extends Component {
   
@@ -32,7 +33,7 @@ class AddTacticalPackage extends Component {
   handleSubmit(e) {
     e.preventDefault(); 
     debugger
-    this.props.addTacticalPackage(this.state)
+    this.props.addTacticalPackage(this.state) 
       .then(res => { 
         this.props.history.push(`/tactical_packages`)
       })  
@@ -203,4 +204,4 @@ const mapStateToProps = ({ usersReducer }) => {
   };
 };
 
-export default connect(mapStateToProps, { addTacticalPackage })(AddTacticalPackage);
+export default withRouter(connect(mapStateToProps, { addTacticalPackage })(AddTacticalPackage));

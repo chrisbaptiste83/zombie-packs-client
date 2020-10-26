@@ -45,7 +45,7 @@ export const addTacticalPackage = tacticalPackage => {
           type: ADD_TACTICALPACK,
           payload: tacticalPackage
         }) 
-        return tacticalPackage  
+        return tacticalPackage
       })
   }
 } 
