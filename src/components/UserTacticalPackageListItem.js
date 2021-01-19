@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'; 
 import {Card, Button} from 'react-bootstrap'
 
-const UserTacticalPackageListItem = ({id, title, description, creator, primary_weapon_image_url}) => { 
+const UserTacticalPackageListItem = ({id, title, description, creator}) => { 
   return (
     <React.Fragment> 
         <Card style={{background: 'rgba(0,0,0, 0.75)',color:'white', width: '65rem' }}>  
@@ -12,7 +12,6 @@ const UserTacticalPackageListItem = ({id, title, description, creator, primary_w
               <h5>{description}</h5>
               <small>created by: {creator}</small>
             </Card.Text> 
-            <img src={primary_weapon_image_url} width={500} height={240} alt="" /><br></br><br></br>
             <Button style={{ background: 'black'}}><Link to={{ pathname: `/tactical_packages/${id}`}}> View Tac Pack</Link></Button>
           </Card.Body>
         </Card><br></br> 

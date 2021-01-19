@@ -33,11 +33,7 @@ const tacticalPackages = (state = {
     case ADD_TACTICALPACK: 
       return {
         ...state,
-        items: state.items.concat(action.payload.id),
-        itemsById: {
-          ...state.itemsById,
-          [action.payload.id]: action.payload
-        }
+        items: state.items.concat(action.payload.id)
       }
     case 'DELETE_TACTICALPACK':
       return {

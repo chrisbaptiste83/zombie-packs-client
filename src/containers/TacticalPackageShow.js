@@ -1,6 +1,5 @@
 import React, { Component } from 'react';  
 import TacticalPackage from '../components/TacticalPackage'; 
-import {fetchTacticalPackagebyId} from '../actions/index.js'; 
 import { connect } from 'react-redux';
 
 
@@ -9,11 +8,6 @@ class TacticalPackageShow extends Component {
   constructor(props) { 
     super(props); 
   } 
-
-  // componentDidMount() { 
-  //   this.props.fetchTacticalPackagebyId(this.props.match.params.id) 
-  // } 
-
 
   render() { 
     if (!this.props.tacticalPackage) {

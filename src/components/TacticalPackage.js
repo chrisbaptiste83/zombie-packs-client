@@ -10,7 +10,8 @@ const TacticalPackage = ({tacticalPackage:{attributes}}) => {
         <Card style={{background: 'rgba(0,0,0, 0.80)',color:'white', width: '65rem' }}>  
           <Card.Body>
             <Card.Title><h1>{attributes.title}</h1></Card.Title> 
-            <Card.Text>
+            <Card.Text> 
+            <img src={attributes.image} width={500} height={240} alt="" /><br></br><br></br>
               <h4>{attributes.description}</h4>
               <small>created by:{attributes.creator}</small>
             </Card.Text> 
@@ -19,7 +20,6 @@ const TacticalPackage = ({tacticalPackage:{attributes}}) => {
         <Card style={{ background: 'rgba(0,0,0, 0.85)',color:'white', width: '65rem' }}>  
           <Card.Body>
             <Card.Title><h2>Primary Weapon:</h2><br></br><h2>{attributes.primary_weapon_name}</h2></Card.Title> 
-            <br></br><img src={attributes.primary_weapon_image_url} width={500} height={240} alt=""/>
             <Card.Text>
             </Card.Text> 
           </Card.Body>
@@ -27,7 +27,7 @@ const TacticalPackage = ({tacticalPackage:{attributes}}) => {
         <Card style={{ background: 'rgba(0,0,0, 0.85)',color:'white', width: '65rem' }}>  
           <Card.Body>
             <Card.Title><h2>Secondary Weapon:</h2><br></br><h2>{attributes.secondary_weapon_name}</h2></Card.Title> 
-            <br></br><img src={attributes.secondary_weapon_image_url} width={500} height={240} alt=""/> 
+         
             <Card.Text>
            
             </Card.Text> 
@@ -36,7 +36,7 @@ const TacticalPackage = ({tacticalPackage:{attributes}}) => {
         <Card style={{background: 'rgba(0,0,0, 0.85)',color:'white', width: '65rem' }}>  
           <Card.Body>
             <Card.Title><h2>Lethal Weapon:</h2><br></br><h2>{attributes.lethal_weapon_name}</h2></Card.Title> 
-            <br></br><img src={attributes.lethal_weapon_image_url} width={500} height={240} alt=""/> 
+           
             <Card.Text>
              
             </Card.Text> 
@@ -45,7 +45,7 @@ const TacticalPackage = ({tacticalPackage:{attributes}}) => {
         <Card style={{background: 'rgba(0,0,0, 0.85)',color:'white', width: '65rem' }}>  
           <Card.Body>
             <Card.Title><h2>Tactical Equipment:</h2><br></br><h2>{attributes.tactical_item_name}</h2></Card.Title> 
-            <br></br><img src={attributes.tactical_item_image_url} width={500} height={240} alt=""/>
+          
             <Card.Text> 
             </Card.Text> 
           </Card.Body>
