@@ -30,10 +30,22 @@ class AddTacticalPackage extends Component {
 
   handleSubmit(e) {
     e.preventDefault(); 
+    let formData = new FormData(); 
+    
+    formData.append("title", this.state.title);
+    formData.append("description", this.state.description);
+    formData.append("creator", this.state.creator); 
+    formData.append("user_id", this.state.user_id);
+    formData.append("primary_weapon_name", this.state.primary_weapon_name);
+    formData.append("secondary_weapon_name", this.state.secondary_weapon_name);  
+    formData.append("lethal_weapon_name", this.state.lethal_weapon_name);
+    formData.append("tactical_item_name", this.state.tactical_item_name);  
+    formData.append("avatar", this.state.avatar); 
     debugger
-    this.props.addTacticalPackage(this.state) 
+    this.props.addTacticalPackage(formData)  
+    
       .then(res => { 
-        this.props.history.push(`/users/` + `${this.props.user.id}`)
+        this.props.history.push(`/tactical_packages`)
       })  
     this.setState({ 
       submitted:true
