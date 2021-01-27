@@ -22,7 +22,7 @@ export const fetchTacticalPackages = () => {
       .then(tacticalPackages => { 
         dispatch({
           type: RECEIVE_TACTICALPACKS, 
-          payload: tacticalPackages.data
+          payload: tacticalPackages
         })
       })   
   }
@@ -30,24 +30,26 @@ export const fetchTacticalPackages = () => {
 
 
 
-export const addTacticalPackage = tacticalPackage => {
+export const addTacticalPackage = formData => { 
   return dispatch => {
     return fetch('http://localhost:3001/tactical_packages', {
         method: "POST",
         headers: {
            "Content-Type": "application/json"
         },
-        body: JSON.stringify(tacticalPackage)
-    }) 
-      .then(res => res.json())
+        body: JSON.stringify(formData) 
+    })  
+      .then(res => res.json()) 
       .then(tacticalPackage => { 
         dispatch({
           type: ADD_TACTICALPACK,
           payload: tacticalPackage
         }) 
-        return tacticalPackage
-      })
-  }
+        
+        return tacticalPackage 
+        
+      }) 
+  } 
 } 
 export const logoutUser = (id) => {
   return (dispatch) => {
